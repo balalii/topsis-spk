@@ -210,7 +210,7 @@ export default function App() {
       {/* Header */}
       <div className="bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex md:items-center justify-between md:flex-row flex-col gap-4 ">
             <div className="flex items-center gap-3">
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Sistem Pakar Pemilihan Kos</h1>
@@ -464,7 +464,7 @@ export default function App() {
               </Card>
             ) : (
               <>
-                <Card className="bg-gradient-to-br from-blue-50 to-purple-50">
+                <Card className=" ">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Trophy className="h-6 w-6 text-yellow-600" />
@@ -476,8 +476,8 @@ export default function App() {
                     <div className="space-y-4">
                       {topsisResult.results.map((result, index) => (
                         <Card key={result.id} className={`overflow-hidden ${index === 0 ? 'border-yellow-400 border-2 shadow-lg' : ''}`}>
-                          <div className="flex items-start gap-4 p-6">
-                            {result.foto && <img src={result.foto} alt={result.nama} className="w-24 h-24 object-cover rounded-lg flex-shrink-0" />}
+                          <div className="flex-col md:flex-row items-start gap-4 p-6">
+                            {result.foto && <img src={result.foto} alt={result.nama} className="w-full h-full md:w-24 m:h-24 object-cover rounded-lg flex-shrink-0 mb-5" />}
                             <div className="flex-1">
                               <div className="flex items-start justify-between mb-2">
                                 <div>
