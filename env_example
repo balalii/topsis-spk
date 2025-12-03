@@ -3,6 +3,3 @@ NEXT_PUBLIC_BASE_URL=https://topsis-choice-maker.preview.emergentagent.com
 NEXT_PUBLIC_SUPABASE_URL= https://sjrsritceqjbibpzygof.supabase.co
 SUPABASE_SERVICE_ROLE_KEY= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcnNyaXRjZXFqYmlicHp5Z29mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NjQ5NTcsImV4cCI6MjA4MDM0MDk1N30.QNt5Of1CaUg48RDnRs7nyCbEbmwd9AIh6hzc6VAJd-c
 CORS_ORIGINS=*
-
-
-
