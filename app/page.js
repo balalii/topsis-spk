@@ -180,6 +180,31 @@ export default function App() {
     }
   };
 
+   const handleSeedData = async () => {
+    if (!confirm('Apakah Anda yakin ingin mengisi data sample? Data yang ada akan ditambah.')) return;
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await fetch('/api/seed', { method: 'POST' });
+      const data = await response.json();
+
+      if (data.success) {
+        setSuccess('Data sample berhasil ditambahkan!');
+        fetchKos();
+        setTimeout(() => setSuccess(''), 3000);
+      } else {
+        setError(data.error || 'Gagal menambahkan data sample');
+      }
+    } catch (err) {
+      setError('Terjadi kesalahan: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
@@ -187,21 +212,27 @@ export default function App() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-3 rounded-xl">
-                <Home className="h-8 w-8 text-white" />
-              </div>
               <div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Sistem Pakar Pemilihan Kos</h1>
                 <p className="text-sm text-muted-foreground">Metode TOPSIS - Technique for Order of Preference by Similarity to Ideal Solution</p>
               </div>
             </div>
-            <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                  <Plus className="mr-2 h-4 w-4" />
-                  Tambah Kos
-                </Button>
-              </DialogTrigger>
+           <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                onClick={handleSeedData}
+                disabled={loading}
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                {loading ? 'Loading...' : 'Isi Data Sample'}
+              </Button>
+              <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Tambah Kos
+                  </Button>
+                </DialogTrigger>
               <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>Tambah Kos Baru</DialogTitle>
@@ -256,6 +287,7 @@ export default function App() {
                 </form>
               </DialogContent>
             </Dialog>
+          </div>
           </div>
         </div>
       </div>
